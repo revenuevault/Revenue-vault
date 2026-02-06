@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Revenue Vault - The complete database of 100+ business models. Search, filter, and compare SaaS, Marketplace, E-commerce, and more. Find your formula.">
+    <meta name="keywords" content="business models, revenue models, SaaS, marketplace, monetization, startup, business strategy">
+    <meta name="author" content="Revenue Vault">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Revenue Vault - Where Founders Find Their Formula">
+    <meta property="og:description" content="100+ business models. Search, filter, compare. SaaS, Marketplace, E-commerce, and more.">
+    <meta property="og:url" content="https://revenuevault.com">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Revenue Vault - Where Founders Find Their Formula">
+    <meta name="twitter:description" content="100+ business models. Find yours.">
+    
+    <title>Revenue Vault - Where Founders Find Their Formula</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --vault-dark: #0a0e14;
+            --vault-black: #1a1f2e;
+            --vault-teal: #14b8a6;
+            --vault-gold: #fbbf24;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--vault-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .header {
+            background: rgba(26, 31, 46, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(20, 184, 166, 0.1);
+            padding: 20px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--vault-teal), var(--vault-gold));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        .hero {
+            padding: 100px 32px 60px;
+            text-align: center;
+            position: relative;
+        }
+        .hero-title {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--vault-teal), var(--vault-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--vault-black);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: var(--vault-teal);
+        }
+        .filters {
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            padding: 0 32px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--vault-black);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        .filter-btn:hover {
+            border-color: var(--vault-teal);
+            color: var(--vault-teal);
+        }
+        .filter-btn.active {
+            background: var(--vault-teal);
+            border-color: var(--vault-teal);
+            color: white;
+        }
+        .models-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .model-card {
+            background: var(--vault-black);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .model-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--vault-teal);
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.2);
+        }
+        .model-category {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(20, 184, 166, 0.15);
+            color: var(--vault-teal);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .model-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .model-description {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .model-examples {
+            font-size: 13px;
+            color: var(--vault-gold);
+            font-weight: 600;
+        }
+        .model-metrics {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .metric {
+            text-align: center;
+            flex: 1;
+        }
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--vault-teal);
+        }
+        .metric-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        .stats {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--vault-black);
+            border: 1px solid var(--vault-teal);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(20, 184, 166, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modal-close:hover {
+            color: var(--vault-teal);
+        }
+        
+        .modal-header {
+            margin-bottom: 24px;
+        }
+        
+        .modal-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        
+        .modal-section {
+            margin-bottom: 28px;
+        }
+        
+        .modal-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--vault-teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .modal-list {
+            list-style: none;
+        }
+        
+        .modal-list li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .modal-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--vault-teal);
+            font-weight: 700;
+        }
+        
+        .example-item {
+            background: rgba(20, 184, 166, 0.05);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            color: var(--vault-gold);
+            font-weight: 600;
+        }
+        
+        /* Sort Controls */
+        .sort-controls {
+            max-width: 1400px;
+            margin: 0 auto 24px;
+            padding: 0 32px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .sort-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .sort-btn {
+            padding: 8px 16px;
+            background: var(--vault-black);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .sort-btn:hover {
+            border-color: var(--vault-teal);
+            color: var(--vault-teal);
+        }
+        
+        .sort-btn.active {
+            background: var(--vault-teal);
+            border-color: var(--vault-teal);
+            color: white;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--vault-teal), var(--vault-gold));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(20, 184, 166, 0.4);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(20, 184, 166, 0.5);
+        }
+        
+        /* Header Action Buttons */
+        .header-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .header-btn-primary {
+            background: linear-gradient(135deg, var(--vault-gold), var(--vault-teal));
+            border: none;
+            color: white;
+        }
+        
+        .header-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+        }
+        
+        .header-btn-secondary {
+            background: transparent;
+            border: 2px solid var(--vault-teal);
+            color: var(--vault-teal);
+        }
+        
+        .header-btn-secondary:hover {
+            background: rgba(20, 184, 166, 0.1);
+        }
+        
+        /* Reset Button */
+        .reset-btn {
+            padding: 8px 16px;
+            background: rgba(244, 63, 94, 0.1);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            border-radius: 8px;
+            color: #f43f5e;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .reset-btn:hover {
+            background: rgba(244, 63, 94, 0.2);
+            border-color: #f43f5e;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--vault-teal), var(--vault-gold));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(20, 184, 166, 0.4);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quiz-content {
+            padding: 40px;
+        }
+        
+        .quiz-question {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--vault-teal);
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .quiz-option {
+            padding: 16px 20px;
+            background: rgba(20, 184, 166, 0.05);
+            border: 2px solid rgba(20, 184, 166, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(20, 184, 166, 0.1);
+            border-color: var(--vault-teal);
+            transform: translateX(8px);
+        }
+        
+        .quiz-results {
+            margin-top: 24px;
+        }
+        
+        .quiz-result-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--vault-gold);
+            margin-bottom: 16px;
+        }
+        
+        .quiz-model-card {
+            background: rgba(20, 184, 166, 0.05);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--vault-teal);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quiz-model-card:hover {
+            background: rgba(20, 184, 166, 0.1);
+            transform: translateX(4px);
+        }
+        
+        .quiz-model-name {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        
+        .quiz-model-reason {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Table of Contents Sidebar */
+        .toc-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--vault-black);
+            border-left: 1px solid var(--vault-teal);
+            z-index: 101;
+            transition: right 0.3s;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        
+        .toc-sidebar.active {
+            right: 0;
+        }
+        
+        .toc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+        }
+        
+        .toc-title {
+            font-size: 20px;
+            font-weight: 800;
+        }
+        
+        .toc-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .toc-close:hover {
+            color: var(--vault-teal);
+        }
+        
+        .toc-search {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--vault-dark);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .toc-search:focus {
+            outline: none;
+            border-color: var(--vault-teal);
+        }
+        
+        .toc-category {
+            margin-bottom: 24px;
+        }
+        
+        .toc-category-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--vault-teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .toc-model {
+            padding: 8px 12px;
+            margin-bottom: 4px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .toc-model:hover {
+            background: rgba(20, 184, 166, 0.1);
+            transform: translateX(4px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 40px; }
+            .models-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px 40px;
+            }
+            .modal-overlay {
+                padding: 20px;
+            }
+            .modal-content {
+                padding: 28px 20px;
+                max-height: 85vh;
+            }
+            .modal-title {
+                font-size: 24px;
+            }
+            .modal-close {
+                top: 12px;
+                right: 12px;
+                font-size: 24px;
+            }
+            .filters {
+                gap: 8px;
+            }
+            .filter-btn {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            .sort-controls {
+                padding: 0 20px;
+            }
+            .sort-btn {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+            .toc-sidebar {
+                width: 90%;
+                right: -90%;
+            }
+            .header-btn {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+            .logo-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🔐</div>
+                <div>
+                    <div class="logo-text">REVENUE VAULT</div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <button onclick="openQuiz()" class="header-btn header-btn-primary">
+                    🎯 Find My Model
+                </button>
+                <button onclick="toggleTOC()" class="header-btn header-btn-secondary">
+                    ☰ Browse All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1 class="hero-title">
+            <span class="gradient-text">Where Founders Find Their Formula</span>
+        </h1>
+        <p class="hero-subtitle">
+            Every business model. One vault. Your competitive advantage.
+        </p>
+        
+        <div class="search-container">
+            <input 
+                type="text" 
+                class="search-box" 
+                id="searchBox"
+                placeholder="🔍 Search business models..."
+                oninput="filterModels()"
+            >
+        </div>
+
+        <div class="stats">
+            <strong id="modelCount">100 Business Models</strong> • <strong id="exampleCount">400+ Examples</strong> • <strong>Real Revenue Data</strong>
+        </div>
+    </div>
+
+    <!-- Purpose Section -->
+    <div style="max-width: 900px; margin: 20px auto 60px; padding: 0 32px;">
+        <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(251, 191, 36, 0.1)); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: 20px; padding: 48px; text-align: center;">
+            <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 20px; background: linear-gradient(135deg, var(--vault-teal), var(--vault-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                🎯 Pick the Right Model. Build the Right Business.
+            </h2>
+            
+            <p style="font-size: 18px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 20px;">
+                Most founders waste months building with the <strong>WRONG</strong> business model. 
+                SaaS when they should do consulting. Marketplace when they should do SaaS. 
+                E-commerce when they need a service business.
+            </p>
+            
+            <p style="font-size: 18px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 32px;">
+                Revenue Vault shows you which models fit <strong>YOUR</strong> goals, capital, and situation. 
+                Compare 100+ models. See real revenue examples. Make the right choice.
+            </p>
+            
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="openQuiz()" style="padding: 16px 32px; background: var(--vault-teal); border: none; border-radius: 12px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+                    🎯 Take 60-Second Quiz
+                </button>
+                <button onclick="document.getElementById('searchBox').scrollIntoView({behavior: 'smooth', block: 'center'}); document.getElementById('searchBox').focus();" style="padding: 16px 32px; background: transparent; border: 2px solid var(--vault-teal); border-radius: 12px; color: var(--vault-teal); font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+                    📚 Browse All Models
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterByCategory('all')">All Models</button>
+        <button class="filter-btn" onclick="filterByCategory('Revenue Models')">Revenue</button>
+        <button class="filter-btn" onclick="filterByCategory('Pricing Models')">Pricing</button>
+        <button class="filter-btn" onclick="filterByCategory('Sales/Distribution Models')">Distribution</button>
+        <button class="filter-btn" onclick="filterByCategory('Platform/Ecosystem Models')">Platform</button>
+        <button class="filter-btn" onclick="filterByCategory('Value Creation Models')">Services</button>
+        <button class="filter-btn" onclick="filterByCategory('Customer Acquisition Models')">Acquisition</button>
+        <button class="filter-btn" onclick="filterByCategory('Financial Models')">Financial</button>
+        <button class="filter-btn" onclick="filterByCategory('Access/Ownership Models')">Access</button>
+        <button class="filter-btn" onclick="filterByCategory('Emerging/Tech Models')">🚀 Emerging</button>
+        <button class="filter-btn" onclick="filterByCategory('Underground/Gatekept Models')">🔥 Gatekept</button>
+    </div>
+
+    <div class="sort-controls">
+        <span class="sort-label">Sort by:</span>
+        <button class="sort-btn active" onclick="sortModels('default')">Default</button>
+        <button class="sort-btn" onclick="sortModels('scalability')">Scalability ↓</button>
+        <button class="sort-btn" onclick="sortModels('margin')">Margin ↓</button>
+        <button class="sort-btn" onclick="sortModels('name')">Name A-Z</button>
+        <button class="reset-btn" onclick="resetAll()">↻ Reset All</button>
+    </div>
+
+    <div class="models-grid" id="modelsGrid"></div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-content" id="modalContent" onclick="event.stopPropagation()">
+            <!-- Modal content injected here -->
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ↑
+    </button>
+
+    <!-- Table of Contents Sidebar -->
+    <div class="toc-sidebar" id="tocSidebar">
+        <div class="toc-header">
+            <div class="toc-title">All 100 Models</div>
+            <button class="toc-close" onclick="toggleTOC()">✕</button>
+        </div>
+        <input type="text" class="toc-search" id="tocSearch" placeholder="Search models..." oninput="filterTOC()">
+        <div id="tocContent"></div>
+    </div>
+
+    <script>
+        // Embedded database - all 50 business models
+        const allModels = [
+            {
+                id: 1,
+                name: "SaaS (Software as a Service)",
+                category: "Revenue Models",
+                description: "Subscription-based software delivered over the internet. Customers pay monthly or annually for access.",
+                examples: ["Salesforce - $30B+ revenue", "Shopify - $5B+ revenue", "HubSpot - $2B+ revenue"],
+                pros: ["Predictable recurring revenue", "High customer lifetime value", "Scalable"],
+                cons: ["High upfront development costs", "Long time to profitability", "Churn can kill growth"],
+                scalability: 9,
+                marginPotential: 8,
+                tags: ["saas", "software", "recurring-revenue", "b2b", "scalable", "tech"]
+            },
+            {
+                id: 2,
+                name: "Freemium",
+                category: "Revenue Models",
+                description: "Free basic version with paid premium features. Convert 2-5% to paid.",
+                examples: ["Spotify - 220M+ paid from 500M+ free", "Dropbox", "Slack", "Zoom"],
+                pros: ["Low friction acquisition", "Viral growth", "Try before buy"],
+                cons: ["Low conversion rates (2-4%)", "Must support free users", "Infrastructure costs"],
+                scalability: 9,
+                marginPotential: 7,
+                tags: ["freemium", "saas", "viral", "software", "low-friction"]
+            },
+            {
+                id: 3,
+                name: "Marketplace",
+                category: "Revenue Models",
+                description: "Connect buyers and sellers, take 10-30% of each transaction.",
+                examples: ["Airbnb - 3-16% per booking", "Uber - 25-30% per ride", "Etsy - 6.5% transaction fee"],
+                pros: ["No inventory risk", "High margins at scale", "Network effects"],
+                cons: ["Chicken and egg problem", "Hard initial liquidity", "Disintermediation risk"],
+                scalability: 10,
+                marginPotential: 8,
+                tags: ["marketplace", "platform", "two-sided", "network-effects", "scalable"]
+            },
+            {
+                id: 4,
+                name: "E-commerce",
+                category: "Revenue Models",
+                description: "Sell physical or digital products online. Traditional buy low, sell high.",
+                examples: ["Amazon - $500B+ GMV", "Warby Parker - DTC eyewear", "Allbirds - DTC shoes"],
+                pros: ["Proven model", "Can start small", "Own customer relationship"],
+                cons: ["Inventory risk", "Thin margins (20-40%)", "Logistics complexity"],
+                scalability: 7,
+                marginPotential: 5,
+                tags: ["ecommerce", "retail", "physical-product", "inventory"]
+            },
+            {
+                id: 5,
+                name: "Subscription Box",
+                category: "Revenue Models",
+                description: "Recurring delivery of curated products. Monthly boxes delivered to customers.",
+                examples: ["Dollar Shave Club - Sold for $1B", "Birchbox - Beauty", "Blue Apron - Meals"],
+                pros: ["Recurring revenue", "High LTV", "Bulk pricing on products"],
+                cons: ["High churn (30-40% annually)", "Complex logistics", "Novelty wears off"],
+                scalability: 6,
+                marginPotential: 6,
+                tags: ["subscription-box", "recurring-revenue", "ecommerce", "physical-product"]
+            },
+            {
+                id: 6,
+                name: "Affiliate/Lead Gen",
+                category: "Revenue Models",
+                description: "Earn commission referring customers to other businesses.",
+                examples: ["Wirecutter - Product reviews", "NerdWallet - Financial products", "Credit Karma"],
+                pros: ["No product creation", "No customer service", "Can scale with SEO"],
+                cons: ["No control over product", "Program can change", "Lower margins"],
+                scalability: 8,
+                marginPotential: 7
+            },
+            {
+                id: 7,
+                name: "Tiered Pricing",
+                category: "Pricing Models",
+                description: "Offer Good/Better/Best packages to capture different customer segments.",
+                examples: ["Salesforce - $25 to $300/user", "Mailchimp tiers", "HubSpot tiers"],
+                pros: ["Captures more market", "Clear upgrade path", "Easy to choose"],
+                cons: ["Most pick middle", "Feature gating frustrates", "Complex to manage"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 8,
+                name: "Usage-Based Pricing",
+                category: "Pricing Models",
+                description: "Charge based on consumption. Pay for what you use.",
+                examples: ["AWS - Pay per compute", "Twilio - Pay per SMS", "Snowflake"],
+                pros: ["Perfect value alignment", "Low friction start", "Fair and transparent"],
+                cons: ["Unpredictable revenue", "Bill shock fears", "Complex metering"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 9,
+                name: "Direct to Consumer (DTC)",
+                category: "Sales/Distribution Models",
+                description: "Sell directly to customers, cutting out middlemen.",
+                examples: ["Warby Parker - Eyewear", "Casper - Mattresses", "Glossier - Beauty"],
+                pros: ["Higher margins", "Own customer data", "Control brand"],
+                cons: ["Must handle all marketing", "Customer service burden", "High CAC"],
+                scalability: 7,
+                marginPotential: 7
+            },
+            {
+                id: 10,
+                name: "Marketplace (Two-Sided)",
+                category: "Platform/Ecosystem Models",
+                description: "Platform connecting two user groups who transact.",
+                examples: ["Airbnb - Hosts & guests", "Uber - Drivers & riders", "eBay - Sellers & buyers"],
+                pros: ["Strong network effects", "High margins at scale", "Winner-take-all"],
+                cons: ["Chicken and egg", "Must balance both sides", "Trust issues"],
+                scalability: 10,
+                marginPotential: 9
+            },
+            {
+                id: 11,
+                name: "Consulting",
+                category: "Value Creation Models",
+                description: "Sell expertise and advice. Charge for time and knowledge.",
+                examples: ["McKinsey - Strategy", "Deloitte - Professional services", "Freelancers"],
+                pros: ["High margins (70-90%)", "Low capital", "Immediate revenue"],
+                cons: ["Time-for-money ceiling", "Not scalable", "Inconsistent revenue"],
+                scalability: 3,
+                marginPotential: 9
+            },
+            {
+                id: 12,
+                name: "Product-Led Growth (PLG)",
+                category: "Customer Acquisition Models",
+                description: "Product itself drives acquisition and expansion. Self-serve model.",
+                examples: ["Slack - Free tier drives growth", "Notion", "Figma", "Calendly"],
+                pros: ["Lower CAC", "Faster growth", "Better UX", "Efficient"],
+                cons: ["Requires excellent product", "Lower ACV", "Support burden"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 13,
+                name: "Bootstrapped",
+                category: "Financial Models",
+                description: "Self-funded, no investors. Grow with revenue, keep 100% ownership.",
+                examples: ["Basecamp - 100% owned", "Mailchimp - $700M+ ARR", "Spanx - $1B+"],
+                pros: ["100% ownership", "Complete control", "No investor pressure"],
+                cons: ["Slower growth", "Capital constrained", "Personal risk"],
+                scalability: 6,
+                marginPotential: 8
+            },
+            {
+                id: 14,
+                name: "VC-Backed",
+                category: "Financial Models",
+                description: "Raise venture capital for rapid growth. Trade equity for speed.",
+                examples: ["Uber - $25B+ raised", "Airbnb - $6B+ raised", "Stripe - $2B+ raised"],
+                pros: ["Rapid scaling", "Resources for experiments", "VC network"],
+                cons: ["Dilution", "Pressure to grow fast", "Loss of control"],
+                scalability: 10,
+                marginPotential: 7
+            },
+            {
+                id: 15,
+                name: "Info Products",
+                category: "Underground/Gatekept Models",
+                description: "Sell courses, ebooks, memberships. Create once, sell infinitely.",
+                examples: ["Course creators - $1M-$10M/year", "Tim Ferriss ebook - $10M+"],
+                pros: ["95%+ margins", "Infinite scalability", "Create once sell forever"],
+                cons: ["Need audience first", "Competitive", "Low completion rates"],
+                scalability: 10,
+                marginPotential: 10
+            },
+            {
+                id: 16,
+                name: "Newsletter Empire",
+                category: "Underground/Gatekept Models",
+                description: "Paid newsletter or sponsor-supported. Consistent revenue from readers.",
+                examples: ["Morning Brew - Sold for $75M", "Stratechery - $3M+/year"],
+                pros: ["Low overhead", "Direct audience", "Multiple revenue streams"],
+                cons: ["Slow to build", "Must publish consistently", "Burnout risk"],
+                scalability: 8,
+                marginPotential: 9
+            },
+            {
+                id: 17,
+                name: "Micro PE",
+                category: "Underground/Gatekept Models",
+                description: "Buy small profitable businesses, improve operations, hold for cash flow.",
+                examples: ["Tiny - Buys profitable tech businesses", "MicroAcquire marketplace"],
+                pros: ["Buy proven business", "Immediate cash flow", "Less risky"],
+                cons: ["Need capital", "Due diligence intensive", "Integration challenges"],
+                scalability: 7,
+                marginPotential: 8
+            },
+            {
+                id: 18,
+                name: "Lifestyle Business",
+                category: "Underground/Gatekept Models",
+                description: "Optimize for freedom and profit, not growth. Stay small deliberately.",
+                examples: ["Solo SaaS $10K-$100K/month", "Small agencies $1M-$3M/year"],
+                pros: ["Freedom", "High margins", "Work-life balance", "No pressure"],
+                cons: ["Lower upside", "Can't access VC", "Limited hiring"],
+                scalability: 4,
+                marginPotential: 9
+            },
+            {
+                id: 19,
+                name: "Solopreneur",
+                category: "Underground/Gatekept Models",
+                description: "$1M+ revenue with zero employees. Leverage automation and contractors.",
+                examples: ["Pieter Levels - $2M+/year solo", "Micro-SaaS makers"],
+                pros: ["Keep 100% profits", "Ultimate flexibility", "Low overhead"],
+                cons: ["Limited scale", "All on you", "Burnout risk"],
+                scalability: 6,
+                marginPotential: 10
+            },
+            {
+                id: 20,
+                name: "Licensing",
+                category: "Revenue Models",
+                description: "Charge others to use your IP. Create once, license many times.",
+                examples: ["Microsoft Windows", "Dolby audio", "ARM chip designs", "Disney characters"],
+                pros: ["90%+ margins", "Infinite scalability", "Passive income"],
+                cons: ["Need valuable IP", "Enforcement expensive", "Complex agreements"],
+                scalability: 9,
+                marginPotential: 10
+            },
+            {
+                id: 21,
+                name: "Advertising",
+                category: "Revenue Models",
+                description: "Free for users, brands pay for attention. Build large audience, sell access to advertisers.",
+                examples: ["Google - $280B+ ad revenue", "Meta - $130B+", "YouTube - $29B+"],
+                pros: ["Free = massive scale", "High margins at scale", "Multiple revenue streams"],
+                cons: ["Need massive scale", "UX vs revenue tension", "Privacy regulations"],
+                scalability: 10,
+                marginPotential: 9
+            },
+            {
+                id: 22,
+                name: "Transaction Fees",
+                category: "Revenue Models",
+                description: "Charge 1-3% per transaction. Facilitate payments or exchanges.",
+                examples: ["PayPal - 2.9% + $0.30", "Stripe - 2.9% + $0.30", "Square - 2.6% + $0.10"],
+                pros: ["Revenue scales with volume", "Recurring transactions", "Low incremental costs"],
+                cons: ["Thin margins", "Fraud risk", "High volume needed", "Regulatory complex"],
+                scalability: 10,
+                marginPotential: 6
+            },
+            {
+                id: 23,
+                name: "Data Monetization",
+                category: "Revenue Models",
+                description: "Collect data, package insights, sell to businesses who need intelligence.",
+                examples: ["Bloomberg Terminal - $24K/year", "Nielsen - TV data", "Credit bureaus"],
+                pros: ["High margins once collected", "Data compounds", "Multiple buyers"],
+                cons: ["Privacy regulations", "Need scale", "Ethical concerns"],
+                scalability: 9,
+                marginPotential: 9
+            },
+            {
+                id: 24,
+                name: "API as a Service",
+                category: "Revenue Models",
+                description: "Provide service via API. Charge per call or monthly access.",
+                examples: ["Twilio - $3.5B+ from APIs", "SendGrid - Email API", "Google Maps API"],
+                pros: ["Highly scalable", "Sticky integration", "Usage-based aligns value"],
+                cons: ["Complex to build", "Need great docs", "Downtime is catastrophic"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 25,
+                name: "White Label",
+                category: "Revenue Models",
+                description: "Build product, let others rebrand and resell as their own.",
+                examples: ["Private label manufacturers", "White label SaaS", "Store brands"],
+                pros: ["Focus on product not marketing", "Partners handle acquisition", "Lower CAC"],
+                cons: ["No brand equity", "Partner dependent", "Lower margins", "Can become competitor"],
+                scalability: 8,
+                marginPotential: 6
+            },
+            {
+                id: 26,
+                name: "Franchise",
+                category: "Revenue Models",
+                description: "License entire business model. Franchisees pay upfront plus 4-8% royalties.",
+                examples: ["McDonald's - 38K+ locations", "Subway - 37K+", "7-Eleven - 77K+"],
+                pros: ["Rapid expansion", "Recurring royalties", "Operators invested"],
+                cons: ["Quality control difficult", "Complex legal", "Brand risk"],
+                scalability: 9,
+                marginPotential: 7
+            },
+            {
+                id: 27,
+                name: "Razor/Blade",
+                category: "Revenue Models",
+                description: "Cheap hardware, expensive consumables. Lock customers into ecosystem.",
+                examples: ["Gillette - Cheap razors, expensive blades", "HP - Cheap printers, expensive ink"],
+                pros: ["Low acquisition friction", "High LTV", "Customer lock-in"],
+                cons: ["Upfront loss on hardware", "Vulnerable to alternatives", "Customers feel trapped"],
+                scalability: 8,
+                marginPotential: 7
+            },
+            {
+                id: 28,
+                name: "Reverse Razor/Blade",
+                category: "Revenue Models",
+                description: "Expensive hardware upfront, cheap/free ecosystem. Apple model.",
+                examples: ["Apple - $1000+ iPhone, 30% App Store", "Tesla - $50K+ car, $10/mo connectivity"],
+                pros: ["Profit day one", "Premium positioning", "Multiple monetization"],
+                cons: ["High CAC", "Need strong brand", "Smaller market"],
+                scalability: 7,
+                marginPotential: 8
+            },
+            {
+                id: 29,
+                name: "Per-Seat Pricing",
+                category: "Pricing Models",
+                description: "Charge per user. Price scales linearly with team size.",
+                examples: ["Slack - $8/user/month", "Microsoft 365 - $6-35/user", "Asana - $11/user"],
+                pros: ["Simple and predictable", "Revenue grows with customer", "Easy to budget"],
+                cons: ["Disincentivizes adding users", "Seat optimization", "Expensive for large teams"],
+                scalability: 9,
+                marginPotential: 8
+            },
+            {
+                id: 30,
+                name: "Flat Rate",
+                category: "Pricing Models",
+                description: "One price for unlimited use. Simple and predictable.",
+                examples: ["Netflix - $15/mo unlimited", "Spotify - $10/mo", "Basecamp - $99/mo unlimited users"],
+                pros: ["Extremely simple", "No bill shock", "Easy to budget"],
+                cons: ["Leaves money on table", "Heavy users cost more", "Can't expand revenue"],
+                scalability: 8,
+                marginPotential: 7
+            },
+            {
+                id: 31,
+                name: "Dynamic Pricing",
+                category: "Pricing Models",
+                description: "Price changes based on demand. Maximize revenue by charging what market will bear.",
+                examples: ["Uber - Surge pricing", "Airlines - Prices fluctuate", "Hotels - Peak pricing"],
+                pros: ["Maximize revenue", "Balance supply/demand", "Extract more value"],
+                cons: ["Customer frustration", "Complexity", "Perception of unfairness"],
+                scalability: 9,
+                marginPotential: 9
+            },
+            {
+                id: 32,
+                name: "B2B (Business to Business)",
+                category: "Sales/Distribution Models",
+                description: "Sell to businesses. Higher contract values, longer sales cycles.",
+                examples: ["Salesforce - CRM for enterprises", "AWS - Cloud infrastructure", "Slack"],
+                pros: ["Higher contract values", "Lower churn", "Predictable revenue"],
+                cons: ["Long sales cycles (3-12 mo)", "Complex decisions", "Need sales team"],
+                scalability: 8,
+                marginPotential: 8
+            },
+            {
+                id: 33,
+                name: "B2C (Business to Consumer)",
+                category: "Sales/Distribution Models",
+                description: "Sell directly to end consumers. Higher volume, lower prices.",
+                examples: ["Amazon", "Netflix", "Spotify", "Consumer apps"],
+                pros: ["Large addressable market", "Can scale quickly", "Self-serve"],
+                cons: ["Higher churn", "Lower LTV", "More price sensitive"],
+                scalability: 9,
+                marginPotential: 6
+            },
+            {
+                id: 34,
+                name: "Platform as a Service",
+                category: "Platform/Ecosystem Models",
+                description: "Provide infrastructure for others to build on top of.",
+                examples: ["Salesforce Platform", "Shopify apps", "WordPress plugins", "Stripe"],
+                pros: ["Others build value on platform", "Network effects", "Sticky"],
+                cons: ["Must attract developers", "Platform stability critical", "Complexity"],
+                scalability: 10,
+                marginPotential: 9
+            },
+            {
+                id: 35,
+                name: "Aggregator",
+                category: "Platform/Ecosystem Models",
+                description: "Bundle fragmented suppliers under one interface. Own customer relationship.",
+                examples: ["Netflix - Aggregates content", "Spotify - Aggregates music", "Booking.com - Hotels"],
+                pros: ["Own customer relationship", "Suppliers have little power", "High margins"],
+                cons: ["Need content/supply first", "Suppliers may resent you", "Content costs"],
+                scalability: 10,
+                marginPotential: 7
+            },
+            {
+                id: 36,
+                name: "Agency",
+                category: "Value Creation Models",
+                description: "Provide services on behalf of clients. Build team to deliver work.",
+                examples: ["Marketing agencies", "Design agencies", "PR agencies", "Dev agencies"],
+                pros: ["Proven model", "Recurring retainers", "Can scale with team"],
+                cons: ["People-intensive", "Client dependency", "Talent retention", "Margin pressure"],
+                scalability: 5,
+                marginPotential: 6
+            },
+            {
+                id: 37,
+                name: "Productized Service",
+                category: "Value Creation Models",
+                description: "Package service into fixed-scope, fixed-price offering.",
+                examples: ["Logo design packages - $500", "Design Pickle - $499/mo unlimited designs"],
+                pros: ["Easier to sell", "Clear value prop", "More scalable", "Predictable pricing"],
+                cons: ["Less customization = less margin", "Scope creep", "Commoditization"],
+                scalability: 6,
+                marginPotential: 7
+            },
+            {
+                id: 38,
+                name: "Retainer",
+                category: "Value Creation Models",
+                description: "Ongoing service for fixed monthly fee. Client pays for access to time/expertise.",
+                examples: ["Legal retainers", "PR retainers", "Marketing retainers", "Bookkeeping"],
+                pros: ["Predictable recurring revenue", "Deeper relationships", "Easier planning"],
+                cons: ["Scope can be unclear", "Client may underutilize", "Hard to scale"],
+                scalability: 4,
+                marginPotential: 8
+            },
+            {
+                id: 39,
+                name: "Outcome-Based Pricing",
+                category: "Value Creation Models",
+                description: "Get paid for results, not time. Charge based on value delivered.",
+                examples: ["Performance marketing - Pay per lead", "Contingency legal - % of settlement"],
+                pros: ["Aligned incentives", "Can charge much more", "Clients love it"],
+                cons: ["Revenue uncertainty", "May not get paid", "Hard to forecast"],
+                scalability: 5,
+                marginPotential: 10
+            },
+            {
+                id: 40,
+                name: "Viral/Network Effects",
+                category: "Customer Acquisition Models",
+                description: "Product becomes more valuable as more use it. Users invite other users.",
+                examples: ["Facebook - Friends bring friends", "WhatsApp", "Dropbox - Referrals"],
+                pros: ["Exponential growth", "Low/zero CAC", "Strong moat"],
+                cons: ["Hard to engineer", "Takes time to critical mass", "Quality can suffer"],
+                scalability: 10,
+                marginPotential: 9
+            },
+            {
+                id: 41,
+                name: "Enterprise Sales",
+                category: "Customer Acquisition Models",
+                description: "Direct sales team for large contracts. 6-18 month cycles, $100K-$1M+ deals.",
+                examples: ["Oracle - Enterprise database", "SAP - Enterprise ERP", "Palantir"],
+                pros: ["Very high contract values", "Predictable pipeline", "Low churn"],
+                cons: ["Very long cycles", "Expensive sales team", "Complex implementations"],
+                scalability: 7,
+                marginPotential: 8
+            },
+            {
+                id: 42,
+                name: "Content Marketing",
+                category: "Customer Acquisition Models",
+                description: "Create valuable free content to attract customers. SEO, blogs, videos.",
+                examples: ["HubSpot - Marketing blog", "Moz - SEO content", "Buffer - Social media tips"],
+                pros: ["Low CAC", "Compounds over time", "Builds authority"],
+                cons: ["Takes 6-12 months", "Requires consistency", "Competitive"],
+                scalability: 9,
+                marginPotential: 9
+            },
+            {
+                id: 43,
+                name: "Referral Program",
+                category: "Customer Acquisition Models",
+                description: "Incentivize customers to bring new customers. Pay commission or give credits.",
+                examples: ["Dropbox - Both get storage", "Airbnb - $25 credit", "Tesla - $500 credit"],
+                pros: ["Low CAC", "High quality leads", "Viral potential"],
+                cons: ["Need product people love", "Can be expensive", "Fraud risk"],
+                scalability: 9,
+                marginPotential: 8
+            },
+            {
+                id: 44,
+                name: "Revenue-Based Financing",
+                category: "Financial Models",
+                description: "Borrow money, repay with % of monthly revenue. No equity dilution.",
+                examples: ["Clearco - RBF for e-commerce", "Pipe - RBF for SaaS", "Lighter Capital"],
+                pros: ["No dilution", "Flexible repayment", "Faster than VC", "Keep control"],
+                cons: ["More expensive than debt", "Must have revenue", "Takes cash flow"],
+                scalability: 7,
+                marginPotential: 7
+            },
+            {
+                id: 45,
+                name: "Search Fund",
+                category: "Underground/Gatekept Models",
+                description: "Raise $300-500K to search for ONE perfect business to buy and run as CEO.",
+                examples: ["Traditional search funds - MBA grads", "Self-funded searchers", "Stanford model"],
+                pros: ["Instant CEO position", "Proven business", "Investors guide you"],
+                cons: ["2+ years searching", "Pressure to find deal", "Need operational chops"],
+                scalability: 5,
+                marginPotential: 8
+            },
+            {
+                id: 46,
+                name: "Roll-Up/Aggregator",
+                category: "Underground/Gatekept Models",
+                description: "Buy many small businesses in same industry, consolidate, achieve economies of scale.",
+                examples: ["Thrasio - Amazon FBA brands $3B+", "HVAC roll-ups", "Dental practice DSOs"],
+                pros: ["Multiple arbitrage", "Economies of scale", "Strategic value"],
+                cons: ["Complex integration", "Cultural clashes", "Needs capital"],
+                scalability: 8,
+                marginPotential: 9
+            },
+            {
+                id: 47,
+                name: "Crowdfunding (Product)",
+                category: "Financial Models",
+                description: "Presell product before building. Validate demand and fund production with customer money.",
+                examples: ["Pebble Watch - $10M+", "Exploding Kittens - $8.7M", "Hardware startups"],
+                pros: ["Validate before building", "Zero capital upfront", "Marketing + sales in one"],
+                cons: ["Must deliver on promises", "Public failure risk", "Manufacturing delays"],
+                scalability: 5,
+                marginPotential: 6
+            },
+            {
+                id: 48,
+                name: "Equity Crowdfunding",
+                category: "Financial Models",
+                description: "Raise capital from many small investors who get equity. Alternative to VC.",
+                examples: ["Republic campaigns - $500K-$5M", "StartEngine", "Wefunder"],
+                pros: ["Access to capital without VC", "Customer-investors", "Marketing combined"],
+                cons: ["Many small shareholders", "Complex legal", "Platform fees (5-7%)"],
+                scalability: 7,
+                marginPotential: 7
+            },
+            {
+                id: 49,
+                name: "Open Source + Services",
+                category: "Revenue Models",
+                description: "Free software, charge for hosting, support, enterprise features.",
+                examples: ["Red Hat - Sold to IBM for $34B", "GitLab", "MongoDB - Cloud hosting"],
+                pros: ["Fast adoption", "Community contributions", "Trust from open source"],
+                cons: ["Hard to monetize", "Competitors can fork", "Support burden"],
+                scalability: 9,
+                marginPotential: 7
+            },
+            {
+                id: 50,
+                name: "Dropshipping",
+                category: "Sales/Distribution Models",
+                description: "Sell products without holding inventory. Supplier ships directly to customer.",
+                examples: ["Shopify dropshipping stores", "AliExpress dropshippers", "Print-on-demand"],
+                pros: ["Zero inventory risk", "Low startup cost", "Test products easily"],
+                cons: ["Thin margins (10-30%)", "No quality control", "Long shipping", "Supplier dependency"],
+                scalability: 7,
+                marginPotential: 4
+            },
+            {
+                id: 51,
+                name: "Rental",
+                category: "Access/Ownership Models",
+                description: "Own assets, rent them for temporary use. Recurring revenue from same assets.",
+                examples: ["Rent the Runway - Designer clothing", "Tool rental", "Car rental"],
+                pros: ["Recurring revenue", "Customers can't afford to buy", "Asset appreciation"],
+                cons: ["Wear and tear", "Maintenance costs", "Underutilization risk"],
+                scalability: 6,
+                marginPotential: 7
+            },
+            {
+                id: 52,
+                name: "Leasing",
+                category: "Access/Ownership Models",
+                description: "Long-term rental with option to buy. Equipment, vehicles, real estate.",
+                examples: ["Car leases", "Equipment leasing", "Real estate leases"],
+                pros: ["Lower upfront for customer", "Predictable monthly revenue", "Tax benefits"],
+                cons: ["Residual value risk", "Maintenance responsibility", "Credit risk"],
+                scalability: 6,
+                marginPotential: 6
+            },
+            {
+                id: 53,
+                name: "Sharing Economy",
+                category: "Access/Ownership Models",
+                description: "Monetize idle assets. Platform enables people to share/rent their stuff.",
+                examples: ["Airbnb - Homes", "Turo - Cars", "Fat Llama - Equipment"],
+                pros: ["Asset light for platform", "Supply from users", "Network effects"],
+                cons: ["Trust and safety", "Regulatory battles", "Supply quality varies"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 54,
+                name: "Membership/Club",
+                category: "Access/Ownership Models",
+                description: "Pay to belong. Access to exclusive benefits, community, or discounts.",
+                examples: ["Costco - $60/year membership", "Soho House - $2K+/year", "Amazon Prime"],
+                pros: ["Predictable recurring revenue", "Creates loyalty", "Upfront cash"],
+                cons: ["Must deliver ongoing value", "Churn risk", "Competition"],
+                scalability: 8,
+                marginPotential: 8
+            },
+            {
+                id: 55,
+                name: "Cooperative",
+                category: "Access/Ownership Models",
+                description: "Member-owned and operated. Profits distributed to members.",
+                examples: ["REI - Outdoor gear co-op", "Credit unions", "Farmer co-ops"],
+                pros: ["Member alignment", "Community support", "Tax benefits"],
+                cons: ["Slow decision making", "Capital constraints", "Complexity"],
+                scalability: 5,
+                marginPotential: 6
+            },
+            {
+                id: 56,
+                name: "Pay-What-You-Want",
+                category: "Pricing Models",
+                description: "User decides price. Trust-based pricing model.",
+                examples: ["Humble Bundle - Games", "Radiohead albums", "Panera Cares cafes"],
+                pros: ["Inclusive", "Marketing buzz", "Builds goodwill"],
+                cons: ["Unpredictable revenue", "Race to bottom", "Can't sustain long-term"],
+                scalability: 6,
+                marginPotential: 4
+            },
+            {
+                id: 57,
+                name: "Tipping/Donations",
+                category: "Pricing Models",
+                description: "Voluntary payments. Service is free, users tip if they want.",
+                examples: ["Patreon - Creator tips", "Wikipedia donations", "Twitch tips"],
+                pros: ["Low barrier to entry", "Loyal supporters pay more", "Goodwill"],
+                cons: ["Unpredictable", "Not everyone pays", "Can't scale reliably"],
+                scalability: 7,
+                marginPotential: 5
+            },
+            {
+                id: 58,
+                name: "Revenue Share",
+                category: "Pricing Models",
+                description: "Split revenue with partners. Align incentives.",
+                examples: ["YouTube - 55% to creators", "Uber - Drivers get 75%", "App stores - 70/30"],
+                pros: ["Aligned incentives", "Attracts supply", "Scales with partners"],
+                cons: ["Give up revenue", "Partner dependency", "Margin pressure"],
+                scalability: 9,
+                marginPotential: 6
+            },
+            {
+                id: 59,
+                name: "Loss Leader",
+                category: "Pricing Models",
+                description: "Sell at a loss to drive other sales. Use popular item to attract customers.",
+                examples: ["Costco rotisserie chicken $4.99", "Amazon Kindle at cost", "Gas stations"],
+                pros: ["Drives traffic", "Customer acquisition", "Competitive advantage"],
+                cons: ["Loses money on that product", "Must make up elsewhere", "Risky"],
+                scalability: 7,
+                marginPotential: 5
+            },
+            {
+                id: 60,
+                name: "Auction",
+                category: "Pricing Models",
+                description: "Highest bidder wins. Price discovery through competition.",
+                examples: ["eBay auctions", "Google Ads auction", "Sotheby's art auctions"],
+                pros: ["Price discovery", "Maximize revenue", "Competitive excitement"],
+                cons: ["Unpredictable pricing", "Can discourage buyers", "Complex"],
+                scalability: 8,
+                marginPotential: 7
+            },
+            {
+                id: 61,
+                name: "Bundling",
+                category: "Pricing Models",
+                description: "Multiple products for one price. Increase perceived value.",
+                examples: ["Microsoft Office bundle", "Cable TV packages", "Fast food combos"],
+                pros: ["Higher average order value", "Move slow products", "Simplified choice"],
+                cons: ["Cannibalizes individual sales", "Complexity", "Customer frustration"],
+                scalability: 8,
+                marginPotential: 7
+            },
+            {
+                id: 62,
+                name: "Unbundling",
+                category: "Pricing Models",
+                description: "Sell components separately. Let customers choose only what they want.",
+                examples: ["iTunes vs albums", "HBO Max vs cable", "À la carte pricing"],
+                pros: ["Customer choice", "Lower entry price", "Disrupt bundlers"],
+                cons: ["Lower AOV", "More complexity", "Channel conflict"],
+                scalability: 8,
+                marginPotential: 6
+            },
+            {
+                id: 63,
+                name: "Wholesale",
+                category: "Sales/Distribution Models",
+                description: "Sell bulk to retailers who mark up. Traditional distribution model.",
+                examples: ["Consumer packaged goods", "Fashion brands to department stores", "Food distributors"],
+                pros: ["Retailers handle sales", "Scale distribution", "Predictable orders"],
+                cons: ["Lower margins (50% wholesale)", "Lose customer data", "Retailer has power"],
+                scalability: 8,
+                marginPotential: 5
+            },
+            {
+                id: 64,
+                name: "Consignment",
+                category: "Sales/Distribution Models",
+                description: "Only pay when it sells. Retailer doesn't buy inventory upfront.",
+                examples: ["Art galleries", "Thrift stores - ThredUp", "Luxury consignment - The RealReal"],
+                pros: ["No inventory risk for retailer", "Align incentives", "Try new products"],
+                cons: ["Slow payment", "No guaranteed revenue", "Less commitment"],
+                scalability: 6,
+                marginPotential: 6
+            },
+            {
+                id: 65,
+                name: "MLM/Network Marketing",
+                category: "Sales/Distribution Models",
+                description: "Distributors recruit and sell. Multi-level compensation structure.",
+                examples: ["Amway", "Herbalife", "Mary Kay", "Avon"],
+                pros: ["Distributors motivated", "Viral growth potential", "Low overhead"],
+                cons: ["Stigma and reputation issues", "High churn", "Regulatory scrutiny", "Ethical concerns"],
+                scalability: 9,
+                marginPotential: 7
+            },
+            {
+                id: 66,
+                name: "B2B2C",
+                category: "Sales/Distribution Models",
+                description: "Sell to business who sells to consumers. Indirect customer access.",
+                examples: ["Stripe for Shopify merchants", "Insurance sold through brokers", "White label products"],
+                pros: ["Leverage partner distribution", "Faster scaling", "Lower CAC"],
+                cons: ["One step removed from customer", "Partner dependency", "Less control"],
+                scalability: 9,
+                marginPotential: 7
+            },
+            {
+                id: 67,
+                name: "P2P (Peer to Peer)",
+                category: "Sales/Distribution Models",
+                description: "Facilitate transactions between individuals. Platform enables exchange.",
+                examples: ["Venmo - P2P payments", "Craigslist - P2P marketplace", "Poshmark - P2P fashion"],
+                pros: ["Network effects", "Users provide supply/demand", "Viral growth"],
+                cons: ["Monetization challenging", "Trust and safety", "Fraud risk"],
+                scalability: 10,
+                marginPotential: 6
+            },
+            {
+                id: 68,
+                name: "Influencer/Celebrity",
+                category: "Customer Acquisition Models",
+                description: "Famous person drives sales. Leverage their audience and credibility.",
+                examples: ["Fenty Beauty - Rihanna", "MrBeast Burger", "Kylie Cosmetics"],
+                pros: ["Instant audience", "Built-in trust", "Marketing power"],
+                cons: ["Celebrity dependency", "Expensive", "Reputation risk", "Authenticity questions"],
+                scalability: 7,
+                marginPotential: 8
+            },
+            {
+                id: 69,
+                name: "Community-Led Growth",
+                category: "Customer Acquisition Models",
+                description: "Build engaged community first, monetize later. Community drives product.",
+                examples: ["Reddit communities", "Discord servers monetizing", "Indie Hackers"],
+                pros: ["Loyal user base", "Free marketing", "Product feedback", "Network effects"],
+                cons: ["Slow to monetize", "Community can resist monetization", "Moderation burden"],
+                scalability: 9,
+                marginPotential: 7
+            },
+            {
+                id: 70,
+                name: "Self-Service",
+                category: "Customer Acquisition Models",
+                description: "Customers buy without talking to anyone. Fully automated purchase flow.",
+                examples: ["Most SaaS products", "E-commerce", "Digital products", "Amazon"],
+                pros: ["Low CAC", "Scales infinitely", "No sales team needed"],
+                cons: ["Lower contract values", "Support burden", "Conversion optimization critical"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 71,
+                name: "Partner/Channel Sales",
+                category: "Customer Acquisition Models",
+                description: "Other companies sell for you. Leverage partner sales teams.",
+                examples: ["Microsoft partners", "AWS marketplace", "Insurance brokers"],
+                pros: ["Leverage partner reach", "Lower CAC", "Faster scaling"],
+                cons: ["Split revenue", "Less control", "Partner training needed"],
+                scalability: 9,
+                marginPotential: 6
+            },
+            {
+                id: 72,
+                name: "Angel Funded",
+                category: "Financial Models",
+                description: "Early-stage individual investors. $50K-$500K from wealthy individuals.",
+                examples: ["Early Uber investors", "Early Facebook investors", "Tech startups"],
+                pros: ["Mentorship from angels", "Flexible terms", "Faster than VC"],
+                cons: ["Limited capital", "Dilution", "May not have network of VCs"],
+                scalability: 7,
+                marginPotential: 8
+            },
+            {
+                id: 73,
+                name: "Debt Financing",
+                category: "Financial Models",
+                description: "Borrow money, pay back with interest. No dilution.",
+                examples: ["Bank loans", "SBA loans", "Lines of credit", "Bonds"],
+                pros: ["No dilution", "Tax deductible interest", "Keep control"],
+                cons: ["Must repay regardless of performance", "Personal guarantees", "Collateral required"],
+                scalability: 6,
+                marginPotential: 7
+            },
+            {
+                id: 74,
+                name: "Grants",
+                category: "Financial Models",
+                description: "Non-dilutive funding from government or foundations. Don't have to pay back.",
+                examples: ["SBIR grants", "NIH grants", "Foundation grants", "Government R&D"],
+                pros: ["Non-dilutive", "Don't repay", "Validation", "Prestige"],
+                cons: ["Highly competitive", "Slow process", "Restrictions on use", "Reporting requirements"],
+                scalability: 4,
+                marginPotential: 8
+            },
+            {
+                id: 75,
+                name: "Boring Businesses",
+                category: "Underground/Gatekept Models",
+                description: "Unglamorous but profitable. Industries nobody talks about but make money.",
+                examples: ["Waste management", "Storage facilities", "Car washes", "Laundromats"],
+                pros: ["Less competition", "Proven demand", "Predictable cash flow", "Often recession-resistant"],
+                cons: ["Not exciting", "Labor intensive", "Capital intensive upfront"],
+                scalability: 6,
+                marginPotential: 7
+            },
+            {
+                id: 76,
+                name: "IP Holding Company",
+                category: "Underground/Gatekept Models",
+                description: "Own patents/trademarks, license them out. Pure IP monetization.",
+                examples: ["Patent holding companies", "Trademark portfolios", "Music catalogs"],
+                pros: ["Passive income", "Highly scalable", "High margins", "Asset appreciation"],
+                cons: ["Need valuable IP", "Legal costs", "Enforcement burden", "Reputation issues"],
+                scalability: 9,
+                marginPotential: 10
+            },
+            {
+                id: 77,
+                name: "Holdco (Holding Company)",
+                category: "Underground/Gatekept Models",
+                description: "Own multiple diverse businesses. Berkshire Hathaway model.",
+                examples: ["Berkshire Hathaway", "Tiny Capital", "Constellation Software"],
+                pros: ["Diversification", "Compound growth", "Cash flow from multiple sources"],
+                cons: ["Complex to manage", "Capital intensive", "Requires operational expertise"],
+                scalability: 8,
+                marginPotential: 8
+            },
+            {
+                id: 78,
+                name: "Royalty Deals",
+                category: "Underground/Gatekept Models",
+                description: "Ongoing % of sales for upfront investment. Alternative to equity or debt.",
+                examples: ["Music royalties", "Patent royalties", "Brand licensing royalties"],
+                pros: ["Upfront capital", "No dilution", "Aligned with revenue growth"],
+                cons: ["Perpetual payment", "Can be expensive", "Complex accounting"],
+                scalability: 7,
+                marginPotential: 7
+            },
+            {
+                id: 79,
+                name: "Acqui-hire",
+                category: "Underground/Gatekept Models",
+                description: "Buy company mainly for the team, not the product. Talent acquisition.",
+                examples: ["Big tech acquiring startups for engineers", "Google/Facebook acqui-hires"],
+                pros: ["Fast team acquisition", "Proven talent", "Skip recruiting"],
+                cons: ["Expensive per person", "Team may leave", "Product gets shut down"],
+                scalability: 5,
+                marginPotential: 6
+            },
+            {
+                id: 80,
+                name: "Escape Velocity",
+                category: "Underground/Gatekept Models",
+                description: "Get profitable fast, raise zero capital, stay independent. Anti-VC approach.",
+                examples: ["Profitable SaaS from day one", "Bootstrapped agencies", "Cash flow businesses"],
+                pros: ["Total independence", "Own 100%", "Sustainable", "Freedom"],
+                cons: ["Slower growth", "Resource constrained", "Competitive disadvantage vs funded"],
+                scalability: 6,
+                marginPotential: 9
+            },
+            {
+                id: 81,
+                name: "Blockchain/Crypto",
+                category: "Emerging/Tech Models",
+                description: "Tokens, NFTs, DeFi. Decentralized value exchange and ownership.",
+                examples: ["Ethereum", "Coinbase", "OpenSea - NFT marketplace", "DeFi protocols"],
+                pros: ["Global reach", "Decentralized", "New monetization", "Innovation"],
+                cons: ["Regulatory uncertainty", "Volatility", "Complexity", "Reputation issues"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 82,
+                name: "DAO (Decentralized Autonomous Org)",
+                category: "Emerging/Tech Models",
+                description: "Community-governed entity. No central authority, decisions by token holders.",
+                examples: ["MakerDAO", "Uniswap DAO", "Friends With Benefits"],
+                pros: ["True decentralization", "Community ownership", "Transparent governance"],
+                cons: ["Slow decisions", "Coordination challenges", "Legal gray area"],
+                scalability: 8,
+                marginPotential: 7
+            },
+            {
+                id: 83,
+                name: "AI-as-a-Service",
+                category: "Emerging/Tech Models",
+                description: "Charge for AI capabilities. API access to AI models or tools.",
+                examples: ["ChatGPT API", "Midjourney", "Jasper - AI writing", "Runway - AI video"],
+                pros: ["Cutting edge", "High demand", "Premium pricing", "Scalable"],
+                cons: ["Compute costs", "Fast moving space", "Competition from OpenAI"],
+                scalability: 10,
+                marginPotential: 7
+            },
+            {
+                id: 84,
+                name: "No-Code Platforms",
+                category: "Emerging/Tech Models",
+                description: "Let users build without coding. Democratize creation.",
+                examples: ["Webflow - Website builder", "Bubble - App builder", "Airtable", "Zapier"],
+                pros: ["Huge TAM", "Sticky products", "Network effects", "PLG friendly"],
+                cons: ["Complex to build", "Support burden", "Power users hit limits"],
+                scalability: 10,
+                marginPotential: 8
+            },
+            {
+                id: 85,
+                name: "Creator Economy",
+                category: "Emerging/Tech Models",
+                description: "Monetize personal brand. Courses, memberships, sponsorships, products.",
+                examples: ["Substack - Paid newsletters", "OnlyFans - Subscriptions", "Patreon"],
+                pros: ["Direct audience relationship", "Multiple revenue streams", "Low overhead"],
+                cons: ["Personal brand risk", "Burnout", "Platform dependency", "Inconsistent"],
+                scalability: 7,
+                marginPotential: 9
+            },
+            {
+                id: 86,
+                name: "Micro-SaaS",
+                category: "Emerging/Tech Models",
+                description: "Tiny niche SaaS with small team. $5K-$50K MRR sweet spot.",
+                examples: ["Tools solving specific problems", "Indie hacker projects", "Solo founder SaaS"],
+                pros: ["Low overhead", "Can run solo", "Less competition in niches", "Good margins"],
+                cons: ["Limited TAM", "Hard to sell later", "Vulnerable to big players"],
+                scalability: 5,
+                marginPotential: 9
+            },
+            {
+                id: 87,
+                name: "Manufacturing",
+                category: "Value Creation Models",
+                description: "Make and sell physical goods. Traditional production business.",
+                examples: ["Consumer products", "Industrial equipment", "Automotive parts"],
+                pros: ["Tangible products", "Can be very profitable", "High barriers to entry"],
+                cons: ["Capital intensive", "Complex operations", "Supply chain risk", "Thin margins"],
+                scalability: 6,
+                marginPotential: 6
+            },
+            {
+                id: 88,
+                name: "Dropservicing",
+                category: "Value Creation Models",
+                description: "Sell services you outsource to others. Service arbitrage.",
+                examples: ["White label agencies", "Outsourced service fulfillment"],
+                pros: ["Low overhead", "Scalable", "Test services", "No hiring"],
+                cons: ["Quality control", "Margin pressure", "Fulfillment dependency"],
+                scalability: 7,
+                marginPotential: 6
+            },
+            {
+                id: 89,
+                name: "Arbitrage",
+                category: "Value Creation Models",
+                description: "Buy low, sell high. Exploit price differences across markets.",
+                examples: ["Domain flipping", "Retail arbitrage - Amazon FBA", "Ticket scalping"],
+                pros: ["Quick profit", "Low barriers", "Can start small"],
+                cons: ["Temporary opportunities", "Competition", "Ethical questions", "Platform risk"],
+                scalability: 5,
+                marginPotential: 7
+            },
+            {
+                id: 90,
+                name: "Equity/Sweat Equity",
+                category: "Value Creation Models",
+                description: "Take ownership instead of cash payment. Defer compensation for upside.",
+                examples: ["Startup equity compensation", "Co-founder sweat equity", "Advisors"],
+                pros: ["Align incentives", "Preserve cash", "Upside potential"],
+                cons: ["No immediate income", "Illiquid", "Risk of zero value"],
+                scalability: 8,
+                marginPotential: 10
+            },
+            {
+                id: 91,
+                name: "App Store/Plugin Marketplace",
+                category: "Platform/Ecosystem Models",
+                description: "Curated marketplace with revenue share. Third parties extend platform.",
+                examples: ["Apple App Store - 30% cut", "Shopify Apps", "Chrome extensions"],
+                pros: ["Others build value", "Revenue from ecosystem", "Network effects"],
+                cons: ["Revenue share reduces margin", "Must curate quality", "Platform rules"],
+                scalability: 10,
+                marginPotential: 7
+            },
+            {
+                id: 92,
+                name: "White Glove/Concierge",
+                category: "Platform/Ecosystem Models",
+                description: "Personalized high-touch service. Premium pricing for VIP treatment.",
+                examples: ["Luxury travel planning", "Private banking", "Concierge medicine"],
+                pros: ["Premium pricing", "Deep relationships", "High loyalty", "Less price sensitive"],
+                cons: ["Not scalable", "Labor intensive", "Limited TAM"],
+                scalability: 3,
+                marginPotential: 9
+            },
+            {
+                id: 93,
+                name: "Data Products",
+                category: "Value Creation Models",
+                description: "Package data as sellable product. Datasets, APIs, reports.",
+                examples: ["Crunchbase - Startup data", "Pitchbook - Deal data", "Weather data APIs"],
+                pros: ["High margins", "Recurring revenue", "Data compounds", "Scalable"],
+                cons: ["Need unique data", "Privacy concerns", "Expensive to acquire"],
+                scalability: 9,
+                marginPotential: 9
+            },
+            {
+                id: 94,
+                name: "Barter/Trade",
+                category: "Access/Ownership Models",
+                description: "Exchange goods/services without money. Direct value swap.",
+                examples: ["BarterCard networks", "Trade exchanges", "Skill swaps"],
+                pros: ["No cash needed", "Move inventory", "Tax advantages", "Flexibility"],
+                cons: ["Limited scalability", "Matching challenges", "Valuation disputes"],
+                scalability: 3,
+                marginPotential: 5
+            },
+            {
+                id: 95,
+                name: "Pre-Orders",
+                category: "Financial Models",
+                description: "Sell before building. Customer money funds production.",
+                examples: ["Hardware Kickstarters", "Book pre-orders", "Limited edition products"],
+                pros: ["Validate demand", "Fund production", "Zero risk", "Early cash"],
+                cons: ["Must deliver", "Delays hurt brand", "Production challenges"],
+                scalability: 6,
+                marginPotential: 7
+            },
+            {
+                id: 96,
+                name: "Subscription Software (Non-SaaS)",
+                category: "Revenue Models",
+                description: "Software subscription but installed locally. Not cloud-based.",
+                examples: ["Adobe pre-cloud", "Microsoft Office 365 desktop", "Antivirus software"],
+                pros: ["Recurring revenue", "Customer retention", "Offline capability"],
+                cons: ["Updates harder", "Customer can stop paying", "Cloud is winning"],
+                scalability: 7,
+                marginPotential: 7
+            },
+            {
+                id: 97,
+                name: "Per-Transaction SaaS",
+                category: "Revenue Models",
+                description: "SaaS that charges per transaction processed. Hybrid model.",
+                examples: ["Payment processors", "Booking platforms", "Invoicing software"],
+                pros: ["Aligns with customer success", "Scales with usage", "Fair pricing"],
+                cons: ["Revenue volatility", "Complex pricing", "Lower revenue from small users"],
+                scalability: 9,
+                marginPotential: 8
+            },
+            {
+                id: 98,
+                name: "Vertical SaaS",
+                category: "Revenue Models",
+                description: "SaaS for specific industry. Deep specialization vs horizontal.",
+                examples: ["Toast - Restaurant POS", "Veeva - Pharma CRM", "Procore - Construction"],
+                pros: ["Less competition", "Higher willingness to pay", "Sticky", "Deep moat"],
+                cons: ["Smaller TAM", "Industry risk", "Longer sales cycles"],
+                scalability: 7,
+                marginPotential: 9
+            },
+            {
+                id: 99,
+                name: "Freemium + Enterprise",
+                category: "Revenue Models",
+                description: "Free for individuals, paid for teams/companies. PLG + Sales hybrid.",
+                examples: ["Figma - Free designers, paid teams", "Notion", "Miro"],
+                pros: ["Bottom-up adoption", "Top-down revenue", "Best of both", "Land and expand"],
+                cons: ["Complex to execute", "Two go-to-market motions", "Product complexity"],
+                scalability: 10,
+                marginPotential: 9
+            },
+            {
+                id: 100,
+                name: "Usage-Based SaaS",
+                category: "Revenue Models",
+                description: "SaaS charged by consumption. Pay for what you use.",
+                examples: ["Snowflake - Data warehouse", "Twilio - Communications", "AWS"],
+                pros: ["Perfect value alignment", "Low friction", "Grows with customer"],
+                cons: ["Revenue unpredictability", "Bill shock", "Complex metering"],
+                scalability: 10,
+                marginPotential: 8
+            }
+        ];
+        
+        let currentCategory = 'all';
+        let currentSort = 'default';
+        let displayedModels = [...allModels];
+
+        function renderModels(models) {
+            displayedModels = models;
+            const grid = document.getElementById('modelsGrid');
+            grid.innerHTML = models.map(model => `
+                <div class="model-card" onclick="openModal(${model.id})">
+                    <div class="model-category">${model.category}</div>
+                    <h3 class="model-name">${model.name}</h3>
+                    <p class="model-description">${model.description}</p>
+                    <div class="model-examples">
+                        💼 ${model.examples.slice(0, 2).join(' • ')}
+                        ${model.examples.length > 2 ? ` +${model.examples.length - 2} more` : ''}
+                    </div>
+                    <div class="model-metrics">
+                        <div class="metric">
+                            <div class="metric-value">${model.scalability}/10</div>
+                            <div class="metric-label">Scale</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${model.marginPotential}/10</div>
+                            <div class="metric-label">Margin</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(modelId) {
+            const model = allModels.find(m => m.id === modelId);
+            if (!model) return;
+            
+            const modalContent = `
+                <button class="modal-close" onclick="closeModal()">✕</button>
+                <div class="modal-header">
+                    <div class="model-category">${model.category}</div>
+                    <h2 class="modal-title">${model.name}</h2>
+                    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.7;">${model.description}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">Real Examples</div>
+                    ${model.examples.map(ex => `<div class="example-item">💼 ${ex}</div>`).join('')}
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">Pros</div>
+                    <ul class="modal-list">
+                        ${model.pros.map(pro => `<li>${pro}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">Cons</div>
+                    <ul class="modal-list">
+                        ${model.cons.map(con => `<li>${con}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-metrics" style="display: flex; gap: 24px; padding-top: 24px; border-top: 1px solid rgba(148, 163, 184, 0.1);">
+                    <div style="flex: 1; text-align: center;">
+                        <div style="font-size: 32px; font-weight: 700; color: var(--vault-teal);">${model.scalability}/10</div>
+                        <div style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase;">Scalability</div>
+                    </div>
+                    <div style="flex: 1; text-align: center;">
+                        <div style="font-size: 32px; font-weight: 700; color: var(--vault-gold);">${model.marginPotential}/10</div>
+                        <div style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase;">Margin Potential</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('modalContent').innerHTML = modalContent;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Apply filter and current sort
+            applyFiltersAndSort();
+        }
+        
+        function sortModels(sortType) {
+            currentSort = sortType;
+            
+            // Update active sort button
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Apply current filter and sort
+            applyFiltersAndSort();
+        }
+        
+        function applyFiltersAndSort() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            
+            // Filter by category
+            let filtered = currentCategory === 'all'
+                ? [...allModels]
+                : allModels.filter(m => m.category === currentCategory);
+            
+            // Filter by search
+            if (searchTerm) {
+                filtered = filtered.filter(m => 
+                    m.name.toLowerCase().includes(searchTerm) ||
+                    m.description.toLowerCase().includes(searchTerm) ||
+                    m.category.toLowerCase().includes(searchTerm) ||
+                    m.examples.some(ex => ex.toLowerCase().includes(searchTerm)) ||
+                    (m.pros && m.pros.some(pro => pro.toLowerCase().includes(searchTerm))) ||
+                    (m.cons && m.cons.some(con => con.toLowerCase().includes(searchTerm)))
+                );
+            }
+            
+            // Sort
+            if (currentSort === 'scalability') {
+                filtered.sort((a, b) => b.scalability - a.scalability);
+            } else if (currentSort === 'margin') {
+                filtered.sort((a, b) => b.marginPotential - a.marginPotential);
+            } else if (currentSort === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            // 'default' keeps original order
+            
+            renderModels(filtered);
+        }
+
+        function filterModels() {
+            applyFiltersAndSort();
+        }
+        
+        function resetAll() {
+            // Reset category filter
+            currentCategory = 'all';
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes('All Models')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Reset sort
+            currentSort = 'default';
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes('Default')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Clear search
+            document.getElementById('searchBox').value = '';
+            
+            // Re-render
+            renderModels(allModels);
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        function updateStats() {
+            const exampleCount = allModels.reduce((acc, m) => acc + m.examples.length, 0);
+            document.getElementById('modelCount').textContent = `${allModels.length} Business Models`;
+            document.getElementById('exampleCount').textContent = `${exampleCount}+ Examples`;
+        }
+        
+        function updateFilterCounts() {
+            // Count models per category
+            const categoryCounts = {};
+            allModels.forEach(m => {
+                categoryCounts[m.category] = (categoryCounts[m.category] || 0) + 1;
+            });
+            
+            // Update button text to include counts
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const btnText = btn.textContent;
+                // Find matching category
+                for (const [category, count] of Object.entries(categoryCounts)) {
+                    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(category)) {
+                        const baseText = btnText.split(' (')[0]; // Remove existing count if any
+                        btn.textContent = `${baseText} (${count})`;
+                        break;
+                    }
+                }
+            });
+        }
+        
+        // Show/hide back to top button based on scroll
+        function handleScroll() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+        
+        // Business Quiz Logic
+        const quizData = {
+            questions: [
+                {
+                    q: "What are you building?",
+                    options: [
+                        { text: "Software/App", tags: ["saas", "api", "platform", "freemium"] },
+                        { text: "Physical Product", tags: ["ecommerce", "dtc", "subscription-box", "manufacturing"] },
+                        { text: "Service Business", tags: ["consulting", "agency", "productized-service"] },
+                        { text: "Content/Media", tags: ["advertising", "creator-economy", "newsletter", "info-products"] },
+                        { text: "Marketplace/Platform", tags: ["marketplace", "aggregator", "two-sided"] }
+                    ]
+                },
+                {
+                    q: "What's your primary goal?",
+                    options: [
+                        { text: "Scale fast & raise VC", tags: ["vc-backed", "saas", "marketplace", "network-effects"] },
+                        { text: "Steady cash flow", tags: ["bootstrapped", "lifestyle-business", "consulting"] },
+                        { text: "Passive income", tags: ["info-products", "licensing", "rental", "newsletter"] },
+                        { text: "Quick profit", tags: ["arbitrage", "dropshipping", "affiliate"] }
+                    ]
+                },
+                {
+                    q: "How much capital do you have?",
+                    options: [
+                        { text: "$0-$10K", tags: ["bootstrapped", "solopreneur", "info-products", "consulting"] },
+                        { text: "$10K-$100K", tags: ["ecommerce", "saas", "agency"] },
+                        { text: "$100K+", tags: ["manufacturing", "franchise", "rental"] },
+                        { text: "Can raise VC", tags: ["vc-backed", "marketplace", "platform"] }
+                    ]
+                }
+            ]
+        };
+        
+        let quizAnswers = [];
+        let currentQuizStep = 0;
+        
+        function openQuiz() {
+            quizAnswers = [];
+            currentQuizStep = 0;
+            showQuizQuestion();
+        }
+        
+        function showQuizQuestion() {
+            if (currentQuizStep >= quizData.questions.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const question = quizData.questions[currentQuizStep];
+            const quizHTML = `
+                <button class="modal-close" onclick="closeModal()">✕</button>
+                <div class="quiz-content">
+                    <div class="quiz-question">${question.q}</div>
+                    <div class="quiz-options">
+                        ${question.options.map((opt, idx) => `
+                            <div class="quiz-option" onclick="selectQuizOption(${idx})">
+                                ${opt.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('modalContent').innerHTML = quizHTML;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function selectQuizOption(optionIndex) {
+            const question = quizData.questions[currentQuizStep];
+            quizAnswers.push(question.options[optionIndex].tags);
+            currentQuizStep++;
+            showQuizQuestion();
+        }
+        
+        function showQuizResults() {
+            // Flatten and count tag occurrences
+            const tagCounts = {};
+            quizAnswers.flat().forEach(tag => {
+                tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+            });
+            
+            // Find models that match the most tags
+            const scoredModels = allModels.map(model => {
+                let score = 0;
+                const modelTags = model.tags || [];
+                Object.keys(tagCounts).forEach(tag => {
+                    if (model.name.toLowerCase().includes(tag) || 
+                        model.description.toLowerCase().includes(tag) ||
+                        modelTags.includes(tag)) {
+                        score += tagCounts[tag];
+                    }
+                });
+                return { model, score };
+            });
+            
+            // Get top 5 recommendations
+            const recommendations = scoredModels
+                .filter(s => s.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 5);
+            
+            // Fallback: If no matches, show top rated models by scalability + margin
+            const finalRecommendations = recommendations.length > 0 ? recommendations : 
+                allModels
+                    .map(m => ({ model: m, score: m.scalability + m.marginPotential }))
+                    .sort((a, b) => b.score - a.score)
+                    .slice(0, 5);
+            
+            const resultsHTML = `
+                <button class="modal-close" onclick="closeModal()">✕</button>
+                <div class="quiz-content">
+                    <div class="quiz-question">✨ ${recommendations.length > 0 ? 'Your Perfect Matches' : 'Top Rated Models'}</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">${recommendations.length > 0 ? 'Based on your answers, here are the business models that fit you best:' : 'Here are our highest-rated business models to explore:'}</p>
+                    <div class="quiz-results">
+                        ${finalRecommendations.map(r => `
+                            <div class="quiz-model-card" onclick="closeModal(); setTimeout(() => openModal(${r.model.id}), 300)">
+                                <div class="quiz-model-name">${r.model.name}</div>
+                                <div class="quiz-model-reason">${r.model.description}</div>
+                                <div style="margin-top: 8px; font-size: 12px; color: var(--vault-teal);">
+                                    Scalability: ${r.model.scalability}/10 • Margin: ${r.model.marginPotential}/10
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button onclick="openQuiz()" style="margin-top: 20px; padding: 12px 24px; background: var(--vault-teal); border: none; border-radius: 8px; color: white; font-weight: 700; cursor: pointer;">
+                        ↻ Retake Quiz
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('modalContent').innerHTML = resultsHTML;
+        }
+        
+        // Table of Contents Logic
+        function toggleTOC() {
+            const sidebar = document.getElementById('tocSidebar');
+            sidebar.classList.toggle('active');
+            if (sidebar.classList.contains('active')) {
+                renderTOC();
+            }
+        }
+        
+        function renderTOC() {
+            const categories = {};
+            allModels.forEach(model => {
+                if (!categories[model.category]) {
+                    categories[model.category] = [];
+                }
+                categories[model.category].push(model);
+            });
+            
+            const tocHTML = Object.keys(categories).sort().map(category => `
+                <div class="toc-category">
+                    <div class="toc-category-name">${category}</div>
+                    ${categories[category].map(model => `
+                        <div class="toc-model" onclick="toggleTOC(); setTimeout(() => openModal(${model.id}), 300)">
+                            ${model.name}
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+            
+            document.getElementById('tocContent').innerHTML = tocHTML;
+        }
+        
+        function filterTOC() {
+            const searchTerm = document.getElementById('tocSearch').value.toLowerCase();
+            const tocModels = document.querySelectorAll('.toc-model');
+            const tocCategories = document.querySelectorAll('.toc-category');
+            
+            tocCategories.forEach(category => {
+                let hasVisibleModel = false;
+                const models = category.querySelectorAll('.toc-model');
+                
+                models.forEach(model => {
+                    if (model.textContent.toLowerCase().includes(searchTerm)) {
+                        model.style.display = 'block';
+                        hasVisibleModel = true;
+                    } else {
+                        model.style.display = 'none';
+                    }
+                });
+                
+                category.style.display = hasVisibleModel || !searchTerm ? 'block' : 'none';
+            });
+        }
+
+        // Initial render and setup
+        renderModels(allModels);
+        updateStats();
+        updateFilterCounts();
+        
+        // Event listeners
+        window.addEventListener('scroll', handleScroll);
+        
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
